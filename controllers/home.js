@@ -1,4 +1,4 @@
-exports.mostrarTrabajo = (req, res) => {
+const mostrarTrabajo = (req, res) => {
 	res.render('home', {
 		nombrePagina: 'devJobs',
 		tagline: 'Encuentra y Publica Trabajo para Desarrolladores Web',
@@ -6,3 +6,8 @@ exports.mostrarTrabajo = (req, res) => {
         boton: true
 	});
 };
+
+
+module.exports ={
+	mostrarTrabajo
+}

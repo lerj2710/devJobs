@@ -1,18 +1,17 @@
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const exphbs = require("express-handlebars");
+const MongoStore = require("connect-mongo");
+const router = require("./routers");
+const session = require("express-session");
+
 require("dotenv").config();
 require("./config/db");
-
-const cookieParser = require("cookie-parser");
-const express = require("express");
-const exphbs = require("express-handlebars");
-// const mongoose = require("mongoose");
-const MongoStore = require("connect-mongo");
-const router = require("./routes");
-const session = require("express-session");
 
 const path = require("path");
 const app = express();
 
-app.use("/", router());
+app.use('/', router);
 
 // habilitar handlebars como view
 app.engine(
@@ -41,6 +40,8 @@ app.use(
 );
 
 //correr el puerto
-app.listen(process.env.PORT, () => {
-  console.log(`corriedo en el puerto ${process.env.PORT}`);
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`corriedo en el puerto ${port}`);
 });
