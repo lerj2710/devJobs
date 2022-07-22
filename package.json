@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "portal de buscado de empleo con Nodejs, handlebars",
   "main": "index.js",
-  "scripts": {
-    "start": "nodemon ./index.js"
+  "scripts": {    
+    "dev": "nodemon ./index.js",
+    "start": "concurrently \"npm run dev\" \"npm run watch\" ",
+    "watch": "webpack -- -w --mode=development"
   },
   "author": "Luis Rodriguez",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^7.3.0",
     "connect-mongo": "^4.6.0",
     "connect-mongodb-session": "^3.1.1",
     "cookie-parser": "^1.4.6",
@@ -21,6 +24,11 @@
     "slug": "^5.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "babel-loader": "^8.2.5",
+    "nodemon": "^2.0.19",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
   }
 }

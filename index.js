@@ -18,7 +18,8 @@ app.engine(
   "handlebars",
   exphbs.engine({
     defaultLayout: "layout",
-    layoutsDir: path.join(app.get("views"), "layouts"),
+    // layoutsDir: path.join(app.get("views"), "layouts"),
+    helpers: require('./helpers/handlebars')
   })
 );
 
