@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const exphbs = require("express-handlebars");
 const MongoStore = require("connect-mongo");
@@ -11,7 +12,11 @@ require("./config/db");
 const path = require("path");
 const app = express();
 
-app.use('/', router);
+//habilitar body parse
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/", router);
 
 // habilitar handlebars como view
 app.engine(
@@ -19,7 +24,7 @@ app.engine(
   exphbs.engine({
     defaultLayout: "layout",
     // layoutsDir: path.join(app.get("views"), "layouts"),
-    helpers: require('./helpers/handlebars')
+    helpers: require("./helpers/handlebars"),
   })
 );
 
