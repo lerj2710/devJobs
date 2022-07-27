@@ -6,6 +6,7 @@ const {
   agregarVacante,
   mostrarVacantes,
   formEditarVacante,
+  editarVacante,
 } = require("../controllers/vacantes");
 
 const router = Router();
@@ -19,5 +20,6 @@ router.get("/vacantes/:url", mostrarVacantes);
 
 //editar Vacante
 router.get("/vacantes/editar/:url", formEditarVacante);
+router.post("/vacantes/editar/:url", editarVacante);
 
 module.exports = router;

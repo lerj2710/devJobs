@@ -1,4 +1,4 @@
-const Vacantes = require("../models/Vacantes");
+// const Vacantes = require("../models/Vacantes");
 const Vacante = require("../models/Vacantes");
 
 const formularioNuevaVacante = (req, res) => {
@@ -45,9 +45,27 @@ const formEditarVacante = async (req, res, next) => {
   });
 };
 
+const editarVacante = async (req, res) => {
+  const vacanteActualizada = req.body;
+
+  vacanteActualizada.skills = req.body.skills.split(",");
+
+  const vacante = await Vacante.findOneAndUpdate(
+    { url: req.params.url },
+    vacanteActualizada,
+    {
+      new: true,
+      runValidators: true,
+    }
+  ).lean();
+
+  res.redirect(`/vacantes/${vacante.url}`);
+};
+
 module.exports = {
   formularioNuevaVacante,
   agregarVacante,
   mostrarVacantes,
   formEditarVacante,
+  editarVacante,
 };
