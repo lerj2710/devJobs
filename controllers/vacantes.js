@@ -1,4 +1,3 @@
-// const Vacantes = require("../models/Vacantes");
 const Vacante = require("../models/Vacantes");
 
 const formularioNuevaVacante = (req, res) => {

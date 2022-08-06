@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 const { mostrarTrabajo } = require("../controllers/home");
+const { formCrearCuenta, crearUsuario, validarRegistro } = require("../controllers/usuarios");
 const {
   formularioNuevaVacante,
   agregarVacante,
@@ -21,5 +22,9 @@ router.get("/vacantes/:url", mostrarVacantes);
 //editar Vacante
 router.get("/vacantes/editar/:url", formEditarVacante);
 router.post("/vacantes/editar/:url", editarVacante);
+
+// crear cuenta
+router.get("/crear-cuenta", formCrearCuenta);
+router.post("/crear-cuenta", validarRegistro ,crearUsuario);
 
 module.exports = router;

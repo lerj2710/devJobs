@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "portal de buscado de empleo con Nodejs, handlebars",
   "main": "index.js",
-  "scripts": {    
+  "scripts": {
     "dev": "nodemon ./index.js",
     "start": "concurrently \"npm run dev\" \"npm run watch\" ",
     "watch": "webpack -- -w --mode=development"
@@ -11,14 +11,18 @@
   "author": "Luis Rodriguez",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "concurrently": "^7.3.0",
+    "connect-flash": "^0.1.1",
     "connect-mongo": "^4.6.0",
     "connect-mongodb-session": "^3.1.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-flash": "^0.0.2",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
+    "express-validator": "^5.3.0",
     "mongoose": "^6.4.4",
     "shortid": "^2.2.16",
     "slug": "^5.3.0"

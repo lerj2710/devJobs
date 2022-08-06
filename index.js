@@ -5,6 +5,8 @@ const exphbs = require("express-handlebars");
 const MongoStore = require("connect-mongo");
 const router = require("./routers");
 const session = require("express-session");
+const expressValidator = require("express-validator");
+const flash = require("connect-flash");
 
 require("dotenv").config();
 require("./config/db");
@@ -16,7 +18,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/", router);
+// habilitar campos
+app.use(expressValidator());
 
 // habilitar handlebars como view
 app.engine(
@@ -44,6 +47,17 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.DATABASE }),
   })
 );
+
+// Alertas y flash messages
+app.use(flash());
+
+// Crear nuestro middleware
+app.use((req, res, next) => {
+  res.locals.mensajes = req.flash();
+  next();
+});
+
+app.use("/", router);
 
 //correr el puerto
 const port = process.env.PORT || 3000;
