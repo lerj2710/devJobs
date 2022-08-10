@@ -31,9 +31,10 @@ usuariosSchema.pre("save", async function (next) {
   this.password = hash;
   next();
 });
+
 //enviar alerta cuando el usuario ya esta autenticado
 usuariosSchema.post("save", function (error, doc, next) {
-  if (error.code === 11000) {
+  if (error.name === 'MongoError' && error.code === 11000) {
     next('Ese correo ya esta registrado');
   } else {
     next(error);

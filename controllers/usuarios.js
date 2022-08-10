@@ -3,14 +3,12 @@ const Usuarios = require("../models/Usuarios");
 const formCrearCuenta = (req, res) => {
   res.render("crear-cuenta", {
     nombrePagina: "Crea tu cuenta en devJobs",
-    tagline:
-      "Comienza a publicar tus vacantes gratis, Solo debes crear una cuenta",
+    tagline: "Comienza a publicar tus vacantes gratis, Solo debes crear una cuenta",
   });
 };
 
 const validarRegistro = (req, res, next) => {
-  // const { error } = res.locals.mensajes;
-
+  
   // sanitizar
   req.sanitizeBody("nombre").escape();
   req.sanitizeBody("email").escape();
@@ -30,15 +28,11 @@ const validarRegistro = (req, res, next) => {
 
   if (errores) {
     // si hay errores
-    req.flash(
-      "error",
-      errores.map((error) => error.msg)
-    );
+    req.flash("error", errores.map((error) => error.msg));
 
     res.render("crear-cuenta", {
       nombrePagina: "Crea tu cuenta en devJobs",
-      tagline:
-        "Comienza a publicar tus vacantes gratis, solo debes crear una cuenta",
+      tagline: "Comienza a publicar tus vacantes gratis, solo debes crear una cuenta",
       mensajes: req.flash(),
     });
     return;
@@ -56,14 +50,14 @@ const crearUsuario = async (req, res, next) => {
     await usuario.save();
     res.redirect("/iniciar-sesion");
   } catch (error) {
-    req.flash("error", error);
+    req.flash('error', error);
     res.redirect("/crear-cuenta");
   }
 };
 // formulario para iniciar
 const formIniciarSesion = (req, res) => {
   res.render("iniciar-sesion", {
-    nombrePagina: "Iniciar sesión en devJobs",
+    nombrePagina: "Iniciar Sesión en devJobs",
   });
 };
 

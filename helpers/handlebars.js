@@ -53,10 +53,10 @@ module.exports = {
 
   mostrarAlertas: (errores = {}, alertas) => {
     const categoria = Object.keys(errores);
-    let html = "";
+    let html = '';
     if (categoria.length) {
       errores[categoria].forEach((error) => {
-        html += `<div class="${categoria} alerta">
+        html += `<div class='${categoria} alerta'>
         ${error}
         </div>`;
       });
