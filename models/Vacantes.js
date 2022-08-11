@@ -44,6 +44,11 @@ const vacanteSchema = Schema({
       cv: String,
     },
   ],
+  autor: {
+    type: Schema.ObjectId,
+    ref: "Usuarios",
+    required: "El Autor es obligatorio",
+  },
 });
 
 vacanteSchema.pre("save", function (next) {
