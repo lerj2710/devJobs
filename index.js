@@ -1,7 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const handlebars = require('handlebars');
 const exphbs = require("express-handlebars");
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const MongoStore = require("connect-mongo");
 const router = require("./routers");
 const session = require("express-session");
@@ -27,7 +29,7 @@ app.engine(
   "handlebars",
   exphbs.engine({
     defaultLayout: "layout",
-    // layoutsDir: path.join(app.get("views"), "layouts"),
+    handlebars: allowInsecurePrototypeAccess(handlebars),
     helpers: require("./helpers/handlebars"),
   })
 );
