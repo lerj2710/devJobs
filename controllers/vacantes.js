@@ -1,4 +1,5 @@
 const flash = require("express-flash");
+const { check, sanitizeBody } = require("express-validator");
 const Vacante = require("../models/Vacantes");
 
 const formularioNuevaVacante = (req, res) => {
@@ -80,12 +81,11 @@ const validarVacante = (req, res, next) => {
   req.sanitizeBody("skills").escape();
 
   // validar
-
-  req.checkBody("titulo", "Agrega un Titulo a la Vacante").notEmpty();
-  req.checkBody("empresa", "Agrega una Empresa").notEmpty();
-  req.checkBody("ubicacion", "Agrega una Ubicación").notEmpty();
-  req.checkBody("contrato", "Seleciona un Contrato").notEmpty();
-  req.checkBody("skills", "Agrega al menos una habilidad").notEmpty();
+  req.check("titulo", "Agrega un Titulo a la Vacante").notEmpty();
+  req.check("empresa", "Agrega una Empresa").notEmpty();
+  req.check("ubicacion", "Agrega una Ubicación").notEmpty();
+  req.check("contrato", "Seleciona un Contrato").notEmpty();
+  req.check("skills", "Agrega al menos una habilidad").notEmpty();
 
   const errores = req.validationErrors();
 
@@ -108,6 +108,18 @@ const validarVacante = (req, res, next) => {
   next(); //siguiente middlware
 };
 
+const eliminarVacante = async (req, res) => {
+  
+  const { id } = req.params;
+  res.status(200).json("Vacante eliminada correctamente");
+  
+  // const vacante = await Vacantes.findById( _id ) 
+  // console.log(vacante);
+  // res.json(vacante)
+  //   console.log(id);
+  // console.log('funcinando');
+};
+
 module.exports = {
   formularioNuevaVacante,
   agregarVacante,
@@ -115,4 +127,5 @@ module.exports = {
   formEditarVacante,
   editarVacante,
   validarVacante,
+  eliminarVacante,
 };

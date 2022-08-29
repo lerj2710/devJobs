@@ -23,6 +23,7 @@ const {
   formEditarVacante,
   editarVacante,
   validarVacante,
+  eliminarVacante
 } = require("../controllers/vacantes");
 
 const router = Router();
@@ -47,6 +48,9 @@ router.post(
   validarVacante,
   editarVacante
 );
+
+// eliminar Vacantes
+router.delete("/vacantes/eliminar/:id", eliminarVacante)
 
 // crear cuenta
 router.get("/crear-cuenta", formCrearCuenta);

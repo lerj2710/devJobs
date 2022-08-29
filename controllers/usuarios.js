@@ -1,5 +1,6 @@
 const flash = require("express-flash");
 const Usuarios = require("../models/Usuarios");
+const { check, sanitizeBody } = require("express-validator");
 
 const formCrearCuenta = (req, res) => {
   res.render("crear-cuenta", {
@@ -17,13 +18,11 @@ const validarRegistro = (req, res, next) => {
   req.sanitizeBody("confirmar").escape();
 
   // validar
-  req.checkBody("nombre", "El Nombre es Obligatorio").notEmpty();
-  req.checkBody("email", "El email debe ser valido").isEmail();
-  req.checkBody("password", "El password no puede ir vacio").notEmpty();
-  req.checkBody("confirmar", "Confirmar password no puede ir vacio").notEmpty();
-  req
-    .checkBody("confirmar", "El password es diferente")
-    .equals(req.body.password);
+  req.check("nombre", "El Nombre es Obligatorio").notEmpty();
+  req.check("email", "El email debe ser valido").isEmail();
+  req.check("password", "El password no puede ir vacio").notEmpty();
+  req.check("confirmar", "Confirmar password no puede ir vacio").notEmpty();
+  req.check("confirmar", "El password es diferente").equals(req.body.password);
 
   const errores = req.validationErrors();
 

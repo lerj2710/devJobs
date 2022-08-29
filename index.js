@@ -7,7 +7,7 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 const MongoStore = require("connect-mongo");
 const router = require("./routers");
 const session = require("express-session");
-const expressValidator = require("express-validator");
+// const expressValidator = require("express-validator");
 const flash = require("connect-flash");
 const passport = require("./config/passport");
 
@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // habilitar campos
-app.use(expressValidator());
+// app.use(expressValidator());
 
 // habilitar handlebars como view
 app.engine(
